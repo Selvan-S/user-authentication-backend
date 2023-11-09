@@ -11,7 +11,6 @@ async function InsertVerifyUser(name, email, password) {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const token = generateToken(email);
-
     const newUser = new verifyUser({
       name: name,
       email: email,
@@ -19,7 +18,7 @@ async function InsertVerifyUser(name, email, password) {
       token: token,
     });
 
-    const activationLink = `http://localhost:3000/signin/${token}`;
+    const activationLink = `https://auth-be-1s6h.onrender.com/signin/${token}`;
     const content = `<h4> Hi, there </h4>
       <h5>Welcome to the app</h5>
       <p>Thank you for Signing up. Click on the below link to activate</p>
