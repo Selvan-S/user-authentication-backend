@@ -17,7 +17,6 @@ router.post("/", async (req, res) => {
   try {
     const { email, password } = await req.body;
     let loginCredentials = await AuthenticateUser(email, password);
-    // console.log(loginCredentials);
     if (loginCredentials === "Invalid User Name or Password") {
       res.status(200).send("Invalid User Name or Password");
     } else if (loginCredentials === "Server Busy") {

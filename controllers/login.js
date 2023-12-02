@@ -56,12 +56,10 @@ async function AuthorizeUser(token) {
       const email = decodedToken.email;
       const auth = await client.get(`key-${email}`);
       if (auth) {
-        const data = await User.findOne({ email: email });
-        // console.log("auth using mongodb: ", data);
+        const data = JSON.parse(auth);
         return data;
       } else {
-        const data = JSON.parse(auth);
-        // console.log("auth using redis: ", data);
+        const data = await User.findOne({ email: email });
         return data;
       }
     }
